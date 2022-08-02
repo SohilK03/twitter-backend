@@ -4,7 +4,7 @@ const {
   secretOrKey,
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
-} = require("./config/config.js");
+} = require("./config.js");
 var GoogleStrategy = require("passport-google-oauth2").Strategy;
 var JwtStrategy = require("passport-jwt").Strategy,
   ExtractJwt = require("passport-jwt").ExtractJwt;
