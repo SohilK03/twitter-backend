@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const { PORT, mongo_uri } = require("./config/config_dev");
+const { PORT, mongo_uri } = require("./config/config");
 const userRoutes = require("./Routes/userRoutes.js");
 const cors = require("cors");
 const app = express();
@@ -9,7 +9,10 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 mongoose
-  .connect(process.env.mongo_uri || mongo_uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.mongo_uri || mongo_uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Connected To DB"))
   .catch((err) => console.log(err));
 
