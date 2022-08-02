@@ -40,10 +40,10 @@ router.post("/register", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
-router.get("/login", (req, res) => {
+router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-
+  const errors = {};
   // Find User by email
   User.findOne({ email: email })
     .then((user) => {
@@ -106,9 +106,11 @@ router.get(
 
 router.get(
   "/auth/google/callback",
-  passport.authenticate(["google"], { session: false }),
+  passport.authenticate(["google"], {
+    session: false,
+  }),
   (req, res) => {
-      if (req.user) {
+    if (req.user) {
       console.log("Inside call back : " + req.user);
       const payload = {
         id: req.user.id,
@@ -122,11 +124,16 @@ router.get(
         function (err, token2) {
           if (err) console.log(err);
           else {
-            res.status(200).json({ success: true, token: "Bearer " + token2 });
+            res.redirect(`http://localhost:3000/${token2}`);
           }
         }
       );
-    } else res.status(402).json({ error: "Authorization Error" });
+    } else
+      res
+        .status(400)
+        .json({ error: "Authorization Error" })
+        .redirect("http://localhost:3000/");
   }
 );
+router.get("/auth/google/token", (req, res) => {});
 module.exports = router;
