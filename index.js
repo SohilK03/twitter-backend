@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const { PORT, mongo_uri } = require("./config/config");
+const { PORT, mongo_uri } = require("./config/config_dev");
 const userRoutes = require("./Routes/userRoutes.js");
 const cors = require("cors");
 const app = express();

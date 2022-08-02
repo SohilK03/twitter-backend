@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const User = require("../Models/User");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
-const { secretOrKey } = require("../config/config");
+const { secretOrKey } = require("../config/config_dev");
 // @route GET users/test
 // @desc Test user routes
 // @access Public
