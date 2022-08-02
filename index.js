@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 mongoose
-  .connect(process.env.mongo_uri || mongo_uri, {
+  .connect(mongo_uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -33,6 +33,6 @@ app.use("/users", userRoutes);
 //     changeOrigin: true,
 //   })
 // );
-app.listen(process.env.PORT || PORT, (req, res) => {
+app.listen(PORT, (req, res) => {
   console.log(`Server Running on ${process.env.PORT || PORT}`);
 });
