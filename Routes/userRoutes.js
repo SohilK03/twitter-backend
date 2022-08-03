@@ -5,6 +5,8 @@ const User = require("../Models/User");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const { secretOrKey } = require("../config/config");
+
+const frontendUrl = "https://master--graceful-narwhal-62ab60.netlify.app/";
 // @route GET users/test
 // @desc Test user routes
 // @access Public
@@ -124,7 +126,7 @@ router.get(
         function (err, token2) {
           if (err) console.log(err);
           else {
-            res.redirect(`http://localhost:3000/${token2}`);
+            res.redirect(`${frontendUrl}${token2}`);
           }
         }
       );
@@ -132,7 +134,7 @@ router.get(
       res
         .status(400)
         .json({ error: "Authorization Error" })
-        .redirect("http://localhost:3000/");
+        .redirect(res.redirect(`${frontendUrl}`));
   }
 );
 router.get("/auth/google/token", (req, res) => {});
