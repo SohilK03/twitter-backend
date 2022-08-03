@@ -33,7 +33,10 @@ module.exports = (passport) => {
       {
         clientID: process.env.GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET || GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:5000/users/auth/google/callback",
+        callbackURL:
+          process.env.NODE_ENV == "production"
+            ? "https://stark-wave-84229.herokuapp.com/users/auth/google/callback"
+            : "http://localhost:5000/users/auth/google/callback",
         passReqToCallback: true,
       },
       function (request, accessToken, refreshToken, profile, done) {
