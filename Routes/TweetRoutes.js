@@ -18,7 +18,10 @@ router.post(
       name: req.body.name,
       user: req.user.id,
     });
-    newPost.save().then((post) => res.json(post));
+    newPost
+      .save()
+      .then((post) => res.json(post))
+      .catch((err) => res.json(err));
   }
 );
 
